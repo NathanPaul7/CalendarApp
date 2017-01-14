@@ -113,9 +113,3 @@ export default class AddEventForm extends React.Component {
   }
 }
 
-// dateValue: '',
-//         hourValue: '',
-//         minuteValue: '',
-//         amValue: false,
-//         pmValue: false,
-//         eventTextValue: ''

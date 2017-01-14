@@ -2,3 +2,6 @@
   text-align: center;
 }
 
+.event-item {
+  display: flex;
+}
