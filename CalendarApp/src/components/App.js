@@ -31,10 +31,10 @@ export default class App extends React.Component {
 
   postListData(eventData) {
 
-    axios.post('https://calendarapp-eca54.firebaseio.com/.json', {content: eventData})
+
+    axios.post('https://calendarapp-eca54.firebaseio.com/.json', { eventData })
       .then((response) => {
-        console.log(response.data);
-        this.getListData();
+      this.getListData();
       })
 
   }

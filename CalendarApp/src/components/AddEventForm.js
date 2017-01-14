@@ -6,15 +6,21 @@ export default class AddEventForm extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        inputValue: {}
+
+        dateValue: '',
+        hourValue: '',
+        minuteValue: '',
+        eventTextValue: ''
+
       }
 
-    this.renderHours = this.renderHours.bind(this);
-    // this.handleDateChange = this.handleDateChange.bind(this);
-    // this.handleHourChange = this.handleHourChange.bind(this);
-    // this.handleMinuteChange = this.handleMinuteChange.bind(this);
-    // this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleHourChange = this.handleHourChange.bind(this);
+    this.handleMinuteChange = this.handleMinuteChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
+    //this.renderHours = this.renderHours.bind(this);
+
   }
 
 
@@ -23,19 +29,31 @@ export default class AddEventForm extends React.Component {
 
   }
 
-  handleClick() {
-    const event = {
-      date: this.date.value,
-      hour: this.hour.value,
-      minute: this.minute.value,
-      text: this.text.value
+  handleClick(event) {
 
-    }
+    this.props.postListData(this.state);
+    this.addEventForm.reset();
 
-    this.setState({ inputValue: event })
-      console.log(this.state.inputValue);
-    //this.props.postListData(this.state.inputValue);
-    //this.setState({ inputValue: {} });
+  }
+
+  handleDateChange() {
+    const dateValue = this.date.value;
+    this.setState({ dateValue })
+  }
+
+  handleHourChange() {
+    const hourValue = this.hour.value;
+    this.setState({ hourValue })
+
+  }
+  handleMinuteChange() {
+    const minuteValue = this.minute.value;
+    this.setState({ minuteValue })
+  }
+
+  handleTextChange() {
+    const eventTextValue = this.eventText.value;
+    this.setState({ eventTextValue })
   }
 
   renderHours() {
@@ -53,10 +71,13 @@ export default class AddEventForm extends React.Component {
   render() {
     return (
       <div className="form">
-        <form onSubmit={(e) => this.handleSubmit(e)}>
+        <form
+          onSubmit={(e) => this.handleSubmit(e)}
+          ref={(input) => this.addEventForm = input}
+          >
           <input type="text"
             placeholder="Date"
-            ref={(input) => this.date = input}
+            ref={(input) => this.date = input }
             onChange={this.handleDateChange}
             />
             <input
@@ -78,7 +99,7 @@ export default class AddEventForm extends React.Component {
           <input
             type="text"
             placeholder="Event details"
-            ref={(input) => this.text = input}
+            ref={(input) => this.eventText = input}
             onChange={this.handleTextChange}
             />
           <input
