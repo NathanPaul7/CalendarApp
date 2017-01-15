@@ -34,7 +34,6 @@ export default class App extends React.Component {
 
   postListData(eventData) {
 
-
     axios.post('https://calendarapp-eca54.firebaseio.com/.json', { eventData })
       .then((response) => {
       this.getListData();
@@ -42,27 +41,6 @@ export default class App extends React.Component {
 
   }
 
-  // renderTodoList() {
-  //   let todoElements = [];
-
-  //   for(let todoId in this.state.todos) {
-  //     let todo = this.state.todos[todoId]
-
-  //     todoElements.push(
-  //       <div className="todo d-flex justify-content-between pb-4" key={todoId}>
-  //         <div className="mt-2" onClick={ () => this.selectTodo(todoId) }>
-  //           <h4>{todo.title}</h4>
-  //           <div>{moment(todo.createdAt).calendar()}</div>
-  //         </div>
-  //         <button
-  //           className="ml-4 btn btn-link"
-  //           onClick={ () => { this.deleteTodo(todoId) } }
-  //         >
-  //           <span aria-hidden="true">&times;</span>
-  //         </button>
-  //       </div>
-  //     );
-  //   }
 
   render() {
     return (
