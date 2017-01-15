@@ -6,6 +6,9 @@ export default class AddEventForm extends React.Component {
 
   constructor(props) {
     super(props);
+      this.state = {
+        dateValue: ''
+      }
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleHourChange = this.handleHourChange.bind(this);
@@ -29,10 +32,22 @@ export default class AddEventForm extends React.Component {
 
   }
 
-  handleDateChange() {
-    const dateValue = this.date.value;
+  handleDateChange(dateValue) {
+
     this.setState({ dateValue })
   }
+
+// handleChange: function(value, formattedValue) {
+//     this.setState({
+//       value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
+//       formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
+//     });
+//   },
+//   getInitialState: function(){
+//     var value = new Date().toISOString();
+//     return {
+//       value: value
+//     }
 
   handleHourChange() {
     const hourValue = this.hour.value;
@@ -74,7 +89,9 @@ export default class AddEventForm extends React.Component {
           onSubmit={(e) => this.handleSubmit(e)}
           ref={(input) => this.addEventForm = input}
           >
-          <DatePicker   onChange={this.handleChange} />
+          <DatePicker Datevalue={this.state.value}
+                  onChange={this.handleDateChange}
+            />
           <input type="text"
             placeholder="Date"
             ref={(input) => this.date = input }
