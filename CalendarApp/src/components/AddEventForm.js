@@ -6,8 +6,6 @@ export default class AddEventForm extends React.Component {
   constructor(props) {
     super(props);
 
-      const { dateValue, hourValue, minuteValue, eventTextValue } = this.props;
-
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleHourChange = this.handleHourChange.bind(this);
     this.handleMinuteChange = this.handleMinuteChange.bind(this);

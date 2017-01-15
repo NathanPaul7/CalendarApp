@@ -14,7 +14,15 @@ export default class EventListDisplay extends React.Component {
   }
 
   handleEditClick(eventId) {
-this.setState({ eventToEdit: eventId });
+    const { events } = this.props;
+this.setState({
+  eventToEdit: eventId,
+  dateValue: events[eventId].eventData.dateValue,
+  hourValue: events[eventId].eventData.hourValue,
+  minuteValue: events[eventId].eventData.minuteValue,
+  eventTextValue: events[eventId].eventData.eventTextValue
+});
+
   }
 
   handleSubmit(e) {
@@ -26,9 +34,13 @@ this.setState({ eventToEdit: eventId });
     let id = this.state.eventToEdit;
     //let currentTodo = this.state.todos[id];
     //currentTodo.title = this.refs.editTodoInput.value;
-    axios.patch(`https://calendarapp-eca54.firebaseio.com/${id}.json`, { editedData })
+    axios.patch(`https://calendarapp-eca54.firebaseio.com/${id}.json`, { eventData: editedData })
       .then((response) => {
       this.props.getListData();
+      this.setState({ eventToEdit: null })
+      // this.setState({
+      //   dateValue: null,
+      //   eventToEdit: null });
       })
 
   }
@@ -37,8 +49,12 @@ handleClick() {
 
 
     this.patchListData(this.state);
-    console.log(this.state);
-//what's needed here is axios.patch
+    // if (!this.state.dateValue) {
+    //   this.setState({  dateValue: this.date.value })
+    // }
+
+
+
     //this.setState({ eventToEdit: null })
 
 
@@ -70,8 +86,7 @@ handleDateChange() {
 
   renderItemOrEditField( key ) {
     const { events } = this.props;
-    const { dateValue, hourValue, minuteValue, eventTextValue } = this.props;
-    if ( this.state && this.state.eventToEdit === key ) {
+        if ( this.state && this.state.eventToEdit === key ) {
 
       return <li  key={key}  className="event-item">
 
