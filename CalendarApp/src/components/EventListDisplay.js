@@ -3,22 +3,87 @@ import axios from 'axios';
 //import Event from './Event';
 
 export default class EventListDisplay extends React.Component {
+  constructor() {
+    super();
+
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleHourChange = this.handleHourChange.bind(this);
+    this.handleMinuteChange = this.handleMinuteChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
+
+  }
 
   handleEditClick(eventId) {
 this.setState({ eventToEdit: eventId });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+  }
+
+  patchListData(editedData) {
+    let id = this.state.eventToEdit;
+    //let currentTodo = this.state.todos[id];
+    //currentTodo.title = this.refs.editTodoInput.value;
+    axios.patch(`https://calendarapp-eca54.firebaseio.com/${id}.json`, { editedData })
+      .then((response) => {
+      this.props.getListData();
+      })
+
+  }
+
+handleClick() {
+
+
+    this.patchListData(this.state);
+    console.log(this.state);
+//what's needed here is axios.patch
+    //this.setState({ eventToEdit: null })
+
+
+  }
+
+
+
+handleDateChange() {
+    const dateValue = this.date.value;
+    this.setState({ dateValue })
+  }
+
+  handleHourChange() {
+    const hourValue = this.hour.value;
+    this.setState({ hourValue })
+
+  }
+  handleMinuteChange() {
+    const minuteValue = this.minute.value;
+    this.setState({ minuteValue })
+  }
+
+  handleTextChange() {
+    const eventTextValue = this.eventText.value;
+    this.setState({ eventTextValue })
+  }
+
+
 
   renderItemOrEditField( key ) {
     const { events } = this.props;
+    const { dateValue, hourValue, minuteValue, eventTextValue } = this.props;
     if ( this.state && this.state.eventToEdit === key ) {
 
       return <li  key={key}  className="event-item">
-      <button onClick={() => this.handleEditClick(key)}>Save Changes</button>
+
        <form
           onSubmit={(e) => this.handleSubmit(e)}
           ref={(input) => this.addEventForm = input}
           >
+           <input
+            type="submit"
+            value="Save Changes"
+            onClick={() => this.handleClick(key)}
+            />
           <input type="text"
             placeholder="Date"
             ref={(input) => this.date = input }
@@ -50,11 +115,7 @@ this.setState({ eventToEdit: eventId });
             onChange={this.handleTextChange}
             defaultValue={events[key].eventData.eventTextValue}
             />
-          <input
-            type="submit"
-            value="Submit"
-            onClick={() => this.handleClick()}
-            />
+
         </form>
       </li>;
     } else {
@@ -91,11 +152,13 @@ this.setState({ eventToEdit: eventId });
 
     return (
 
-      <ul>{Object.keys(events)
+      <ol>{Object.keys(events)
          .map((key) => { return this.renderItemOrEditField( key )})}
-      </ul>
+      </ol>
 
     );
   }
 }
+
+
 

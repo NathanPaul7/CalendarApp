@@ -5,14 +5,8 @@ export default class AddEventForm extends React.Component {
 
   constructor(props) {
     super(props);
-      this.state = {
 
-        dateValue: '',
-        hourValue: '',
-        minuteValue: '',
-        eventTextValue: ''
-
-      }
+      const { dateValue, hourValue, minuteValue, eventTextValue } = this.props;
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleHourChange = this.handleHourChange.bind(this);
@@ -93,8 +87,8 @@ export default class AddEventForm extends React.Component {
             onChange={this.handleMinuteChange}
             />
           <select>
-            <option value={this.state.amValue}>AM</option>
-            <option value={this.state.pmValue}>PM</option>
+            <option value={this.amValue}>AM</option>
+            <option value={this.pmValue}>PM</option>
           </select>
           <input
             type="text"
