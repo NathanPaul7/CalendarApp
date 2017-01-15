@@ -1,4 +1,5 @@
 import React from 'react';
+import DatePicker from 'react-bootstrap-date-picker';
 
 export default class AddEventForm extends React.Component {
 
@@ -47,6 +48,12 @@ export default class AddEventForm extends React.Component {
     const eventTextValue = this.eventText.value;
     this.setState({ eventTextValue })
   }
+// datePicker() {
+//   $(function () {
+//                 $('#datetimepicker1').datetimepicker();
+//             });
+// }
+
 
   renderHours() {
     for (let i=1; i <= 12; i++) {
@@ -67,11 +74,14 @@ export default class AddEventForm extends React.Component {
           onSubmit={(e) => this.handleSubmit(e)}
           ref={(input) => this.addEventForm = input}
           >
+          <DatePicker   onChange={this.handleChange} />
           <input type="text"
             placeholder="Date"
             ref={(input) => this.date = input }
             onChange={this.handleDateChange}
+            data-provide="datepicker"
             />
+
             <input
               type="number"
               ref={(input) => this.hour = input}
@@ -104,4 +114,8 @@ export default class AddEventForm extends React.Component {
     );
   }
 }
-
+//<DatePicker
+          //showClearButton={false}
+         // ref={(input) => this.date = input }
+         // onChange={this.handleDateChange}
+       //   />

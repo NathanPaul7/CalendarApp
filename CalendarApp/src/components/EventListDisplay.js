@@ -167,9 +167,9 @@ handleDateChange() {
 
     return (
 
-      <ol>{Object.keys(events)
+      <ul>{Object.keys(events)
          .map((key) => { return this.renderItemOrEditField( key )})}
-      </ol>
+      </ul>
 
     );
   }
