@@ -45,24 +45,12 @@ this.setState({
 
   }
 
-handleClick() {
-
+  handleClick() {
 
     this.patchListData(this.state);
-    // if (!this.state.dateValue) {
-    //   this.setState({  dateValue: this.date.value })
-    // }
+ }
 
-
-
-    //this.setState({ eventToEdit: null })
-
-
-  }
-
-
-
-handleDateChange() {
+  handleDateChange() {
     const dateValue = this.date.value;
     this.setState({ dateValue })
   }
@@ -81,7 +69,6 @@ handleDateChange() {
     const eventTextValue = this.eventText.value;
     this.setState({ eventTextValue })
   }
-
 
 
   renderItemOrEditField(key) {
@@ -130,7 +117,6 @@ handleDateChange() {
             onChange={this.handleTextChange}
             defaultValue={events[key].eventData.eventTextValue}
             />
-
         </form>
       </li>;
     } else {
@@ -139,10 +125,9 @@ handleDateChange() {
 
         <button onClick={() => this.handleDeleteClick(key)}>x</button>
         <button onClick={() => this.handleEditClick(key)}>Edit</button>
-       <p> {events[key].eventData.formattedDateValue}</p>
-       <p> {events[key].eventData.hourValue}</p>
-       <p> {events[key].eventData.minuteValue}</p>
-       <p> {events[key].eventData.eventTextValue}</p>
+       <p> <b>Date: </b>{events[key].eventData.formattedDateValue}</p>
+       <p>  <b>Time: </b>{events[key].eventData.timeValue}</p>
+       <p> <b>Scheduled Event:</b> {events[key].eventData.eventTextValue}</p>
 
       </li>
       )

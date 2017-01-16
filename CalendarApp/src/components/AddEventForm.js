@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
+import moment from 'moment';
 
 export default class AddEventForm extends React.Component {
 
@@ -8,12 +9,12 @@ export default class AddEventForm extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        dateValue: ''
+        dateValue: '',
+        timeValue: ''
       }
 
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleHourChange = this.handleHourChange.bind(this);
-    this.handleMinuteChange = this.handleMinuteChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     //this.handleClick = this.handleClick.bind(this);
     //this.renderHours = this.renderHours.bind(this);
@@ -34,41 +35,21 @@ export default class AddEventForm extends React.Component {
   }
 
   handleDateChange(dateValue, formattedValue) {
-
-
     this.setState({
       dateValue: dateValue,
       formattedDateValue: formattedValue
-
        });
   }
 
-  // componentDidUpdate() {
-  //   const hiddenInputElement = document.getElementById("example-datepicker");
-  //   console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z"
-  //   console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016"
-  // }
-
-  handleHourChange() {
-    const hourValue = this.hour.value;
-    this.setState({ hourValue })
-
-  }
-  handleMinuteChange() {
-    const minuteValue = this.minute.value;
-    this.setState({ minuteValue })
+  handleTimeChange(timeValue) {
+    let formattedTime = moment(timeValue).format("hh:mm A");
+    this.setState({ timeValue: formattedTime });
   }
 
   handleTextChange() {
     const eventTextValue = this.eventText.value;
     this.setState({ eventTextValue })
   }
-// datePicker() {
-//   $(function () {
-//                 $('#datetimepicker1').datetimepicker();
-//             });
-// }
-
 
   renderHours() {
     for (let i=1; i <= 12; i++) {
@@ -82,8 +63,6 @@ export default class AddEventForm extends React.Component {
           }
   }
 
-
-
   render() {
     return (
       <div className="form">
@@ -96,24 +75,13 @@ export default class AddEventForm extends React.Component {
               value={this.state.dateValue}
               onChange={this.handleDateChange}
             />
-            <DateTime mode="time" dateFormat={false} inputProps={ {placeholder: "time"} }/>
+            <DateTime
+              dateFormat={false}
+              inputProps={ {placeholder: "time"} }
+              value={this.state.timeValue}
+              onChange={this.handleTimeChange}
+              />
             <input
-              type="number"
-              ref={(input) => this.hour = input}
-              min="1" max="12"
-              onChange={this.handleHourChange}
-            />
-          <input
-            type="number"
-            ref={(input) => this.minute = input}
-            min="01" max="59"
-            onChange={this.handleMinuteChange}
-            />
-          <select>
-            <option value={this.amValue}>AM</option>
-            <option value={this.pmValue}>PM</option>
-          </select>
-          <input
             type="text"
             placeholder="Event details"
             ref={(input) => this.eventText = input}
@@ -129,8 +97,3 @@ export default class AddEventForm extends React.Component {
     );
   }
 }
-//<DatePicker
-          //showClearButton={false}
-         // ref={(input) => this.date = input }
-         // onChange={this.handleDateChange}
-       //   />
