@@ -6,18 +6,19 @@ import moment from 'moment';
 export default class AddEventForm extends React.Component {
 
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
       this.state = {
         dateValue: '',
-        timeValue: ''
+        formattedTimeValue: '',
+        unformattedTimeValue: ''
       }
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
-    //this.handleClick = this.handleClick.bind(this);
-    //this.renderHours = this.renderHours.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
 
   }
 
@@ -31,6 +32,10 @@ export default class AddEventForm extends React.Component {
 
     this.props.postListData(this.state);
     this.addEventForm.reset();
+    this.setState({
+      dateValue: '',
+      formattedTimeValue: ''
+    })
 
   }
 
@@ -41,9 +46,12 @@ export default class AddEventForm extends React.Component {
        });
   }
 
-  handleTimeChange(timeValue) {
+   handleTimeChange(timeValue) {
     let formattedTime = moment(timeValue).format("hh:mm A");
-    this.setState({ timeValue: formattedTime });
+    this.setState({
+      formattedTimeValue: formattedTime,
+      unformattedTimeValue: timeValue
+       });
   }
 
   handleTextChange() {
@@ -51,17 +59,6 @@ export default class AddEventForm extends React.Component {
     this.setState({ eventTextValue })
   }
 
-  renderHours() {
-    for (let i=1; i <= 12; i++) {
-      let options = `<option value=${i}>${i}</option>`;
-      return options;
-
-
-      // let options = [];
-      // options.push(`<option value=${i}>${i}</option>`);
-            //console.log(options);
-          }
-  }
 
   render() {
     return (
@@ -78,7 +75,7 @@ export default class AddEventForm extends React.Component {
             <DateTime
               dateFormat={false}
               inputProps={ {placeholder: "time"} }
-              value={this.state.timeValue}
+              value={this.state.formattedTimeValue}
               onChange={this.handleTimeChange}
               />
             <input

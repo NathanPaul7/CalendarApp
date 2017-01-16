@@ -1,25 +1,36 @@
 import React from 'react';
 import axios from 'axios';
+import DatePicker from 'react-bootstrap-date-picker';
+import DateTime from 'react-datetime';
+import moment from 'moment';
 //import Event from './Event';
 
 export default class EventListDisplay extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+        formattedDateValue: '',
+        unformattedDateValue: '',
+        formattedTimeValue: '',
+        unformattedTimeValue: ''
+      }
+
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleHourChange = this.handleHourChange.bind(this);
-    this.handleMinuteChange = this.handleMinuteChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
 
   }
 
   handleEditClick(eventId) {
     const { events } = this.props;
+
 this.setState({
   eventToEdit: eventId,
-  dateValue: events[eventId].eventData.dateValue,
-  hourValue: events[eventId].eventData.hourValue,
-  minuteValue: events[eventId].eventData.minuteValue,
+  formattedDateValue: events[eventId].eventData.formattedDateValue,
+  formattedTimeValue: events[eventId].eventData.formattedTimeValue,
+  unformattedDateValue: events[eventId].eventData.dateValue,
+  unformattedTimeValue: events[eventId].eventData.unformattedTimeValue,
   eventTextValue: events[eventId].eventData.eventTextValue
 });
 
@@ -50,20 +61,21 @@ this.setState({
     this.patchListData(this.state);
  }
 
-  handleDateChange() {
-    const dateValue = this.date.value;
-    this.setState({ dateValue })
+  handleDateChange(dateValue, formattedValue) {
+    this.setState({
+      unformattedDateValue: dateValue,
+      formattedDateValue: formattedValue
+       });
   }
 
-  handleHourChange() {
-    const hourValue = this.hour.value;
-    this.setState({ hourValue })
+   handleTimeChange(timeValue) {
+    let formattedTime = moment(timeValue).format("hh:mm A");
+    this.setState({
+      formattedTimeValue: formattedTime,
+      unformattedTimeValue: timeValue
+       });
+  }
 
-  }
-  handleMinuteChange() {
-    const minuteValue = this.minute.value;
-    this.setState({ minuteValue })
-  }
 
   handleTextChange() {
     const eventTextValue = this.eventText.value;
@@ -85,31 +97,20 @@ this.setState({
             type="submit"
             value="Save Changes"
             onClick={() => this.handleClick(key)}
+
             />
-          <input type="text"
-            placeholder="Date"
-            ref={(input) => this.date = input }
-            onChange={this.handleDateChange}
-            defaultValue={events[key].eventData.dateValue}
+         <DatePicker
+              id="example-datepicker"
+              value={this.state.unformattedDateValue}
+              onChange={this.handleDateChange}
+
             />
-            <input
-              type="number"
-              ref={(input) => this.hour = input}
-              min="1" max="12"
-              onChange={this.handleHourChange}
-              defaultValue={events[key].eventData.hourValue}
-            />
-          <input
-            type="number"
-            ref={(input) => this.minute = input}
-            min="01" max="59"
-            onChange={this.handleMinuteChange}
-            defaultValue={events[key].eventData.minuteValue}
-            />
-          <select>
-            <option value={this.state.amValue}>AM</option>
-            <option value={this.state.pmValue}>PM</option>
-          </select>
+             <DateTime
+              dateFormat={false}
+              inputProps={ {placeholder: "time"} }
+              value={this.state.formattedTimeValue}
+              onChange={this.handleTimeChange}
+              />
           <input
             type="text"
             placeholder="Event details"
@@ -126,7 +127,7 @@ this.setState({
         <button onClick={() => this.handleDeleteClick(key)}>x</button>
         <button onClick={() => this.handleEditClick(key)}>Edit</button>
        <p> <b>Date: </b>{events[key].eventData.formattedDateValue}</p>
-       <p>  <b>Time: </b>{events[key].eventData.timeValue}</p>
+       <p>  <b>Time: </b>{events[key].eventData.formattedTimeValue}</p>
        <p> <b>Scheduled Event:</b> {events[key].eventData.eventTextValue}</p>
 
       </li>

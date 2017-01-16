@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../src/App.css';
+import '../../src/TimePicker.css';
 import axios from 'axios';
 import AddEventForm from './AddEventForm';
 import EventListDisplay from './EventListDisplay'
@@ -11,11 +12,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: {},
-      dateValue: '',
-      hourValue: '',
-      minuteValue: '',
-      eventTextValue: ''
+      events: {}
     }
 
   this.getListData = this.getListData.bind(this);
@@ -46,8 +43,6 @@ export default class App extends React.Component {
 
   }
 
-
-
   render() {
     return (
       <div className="App">
@@ -55,21 +50,11 @@ export default class App extends React.Component {
         <button>Create New Event</button>
         <AddEventForm
           postListData={this.postListData}
-          dateValue={this.state.dateValue}
-          hourValue={this.state.hourValue}
-          minuteValue={this.state.minuteValue}
-          eventTextValue={this.state.eventTextValue}
           />
         <EventListDisplay
           events={this.state.events}
           getListData={this.getListData}
-          postListData={this.postListData}
-          handleClick={this.handleClick}
-          dateValue={this.state.dateValue}
-          hourValue={this.state.hourValue}
-          minuteValue={this.state.minuteValue}
-          eventTextValue={this.state.eventTextValue}
-           />
+          />
 
       </div>
     );
