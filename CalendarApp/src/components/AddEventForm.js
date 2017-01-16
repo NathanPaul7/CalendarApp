@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-bootstrap-date-picker';
+import DateTime from 'react-datetime';
 
 export default class AddEventForm extends React.Component {
 
@@ -32,22 +33,21 @@ export default class AddEventForm extends React.Component {
 
   }
 
-  handleDateChange(dateValue) {
+  handleDateChange(dateValue, formattedValue) {
 
-    this.setState({ dateValue })
+
+    this.setState({
+      dateValue: dateValue,
+      formattedDateValue: formattedValue
+
+       });
   }
 
-// handleChange: function(value, formattedValue) {
-//     this.setState({
-//       value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-//       formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
-//     });
-//   },
-//   getInitialState: function(){
-//     var value = new Date().toISOString();
-//     return {
-//       value: value
-//     }
+  // componentDidUpdate() {
+  //   const hiddenInputElement = document.getElementById("example-datepicker");
+  //   console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z"
+  //   console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016"
+  // }
 
   handleHourChange() {
     const hourValue = this.hour.value;
@@ -82,6 +82,8 @@ export default class AddEventForm extends React.Component {
           }
   }
 
+
+
   render() {
     return (
       <div className="form">
@@ -89,16 +91,12 @@ export default class AddEventForm extends React.Component {
           onSubmit={(e) => this.handleSubmit(e)}
           ref={(input) => this.addEventForm = input}
           >
-          <DatePicker Datevalue={this.state.value}
-                  onChange={this.handleDateChange}
+            <DatePicker
+              id="example-datepicker"
+              value={this.state.dateValue}
+              onChange={this.handleDateChange}
             />
-          <input type="text"
-            placeholder="Date"
-            ref={(input) => this.date = input }
-            onChange={this.handleDateChange}
-            data-provide="datepicker"
-            />
-
+            <DateTime mode="time" dateFormat={false} inputProps={ {placeholder: "time"} }/>
             <input
               type="number"
               ref={(input) => this.hour = input}

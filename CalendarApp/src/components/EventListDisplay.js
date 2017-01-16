@@ -84,7 +84,7 @@ handleDateChange() {
 
 
 
-  renderItemOrEditField( key ) {
+  renderItemOrEditField(key) {
     const { events } = this.props;
         if ( this.state && this.state.eventToEdit === key ) {
 
@@ -139,7 +139,7 @@ handleDateChange() {
 
         <button onClick={() => this.handleDeleteClick(key)}>x</button>
         <button onClick={() => this.handleEditClick(key)}>Edit</button>
-       <p> {events[key].eventData.dateValue}</p>
+       <p> {events[key].eventData.formattedDateValue}</p>
        <p> {events[key].eventData.hourValue}</p>
        <p> {events[key].eventData.minuteValue}</p>
        <p> {events[key].eventData.eventTextValue}</p>
