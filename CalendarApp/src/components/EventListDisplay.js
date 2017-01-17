@@ -4,6 +4,11 @@ import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
+const propTypes = {
+  event: React.PropTypes.object,
+  getListData: React.PropTypes.func,
+};
+
 export default class EventListDisplay extends React.Component {
   constructor() {
     super();
@@ -28,7 +33,7 @@ export default class EventListDisplay extends React.Component {
         eventToEdit: eventId,
         formattedDateValue: events[eventId].eventData.formattedDateValue,
         formattedTimeValue: events[eventId].eventData.formattedTimeValue,
-        unformattedDateValue: events[eventId].eventData.dateValue,
+        unformattedDateValue: events[eventId].eventData.unformattedDateValue,
         unformattedTimeValue: events[eventId].eventData.unformattedTimeValue,
         eventTextValue: events[eventId].eventData.eventTextValue
   });
@@ -155,5 +160,4 @@ export default class EventListDisplay extends React.Component {
   }
 }
 
-
-
+EventListDisplay.propTypes = propTypes;

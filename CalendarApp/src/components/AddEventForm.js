@@ -3,13 +3,17 @@ import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
+const propTypes = {
+  postListData: React.PropTypes.func
+};
+
 export default class AddEventForm extends React.Component {
 
 
   constructor() {
     super();
       this.state = {
-        dateValue: '',
+        unformattedDateValue: '',
         formattedTimeValue: '',
         unformattedTimeValue: '',
         isAddingEvent: false
@@ -34,15 +38,15 @@ export default class AddEventForm extends React.Component {
     this.props.postListData(this.state);
     this.addEventForm.reset();
     this.setState({
-      dateValue: '',
+      unformattedDateValue: '',
       formattedTimeValue: '',
       isAddingEvent: false
     });
   }
 
-  handleDateChange(dateValue, formattedValue) {
+  handleDateChange(unformattedDateValue, formattedValue) {
     this.setState({
-      dateValue: dateValue,
+      unformattedDateValue: unformattedDateValue,
       formattedDateValue: formattedValue
     });
   }
@@ -82,7 +86,7 @@ export default class AddEventForm extends React.Component {
               <h2>Create New Event:</h2>
               <DatePicker
                 id="example-datepicker"
-                value={this.state.dateValue}
+                value={this.state.unformattedDateValue}
                 onChange={this.handleDateChange}
               />
               <DateTime
