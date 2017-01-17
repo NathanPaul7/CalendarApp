@@ -4,16 +4,16 @@
 
 ##Technologies Used
 
--HTML
--CSS
--Javascript
--Github
--React
--Bootstrap
--[Moment.js](http://momentjs.com/)
--[react-bootstrap-datepicker](https://github.com/pushtell/react-bootstrap-date-picker) for my date picker
--[react-datetime](https://github.com/YouCanBookMe/react-datetime) for my time picker
--[Axios](https://github.com/mzabriskie/axios)
+- HTML
+- CSS
+- Javascript
+- Github
+- React
+- Bootstrap
+- [Moment.js](http://momentjs.com/)
+- [react-bootstrap-datepicker](https://github.com/pushtell/react-bootstrap-date-picker) for my date picker
+- [react-datetime](https://github.com/YouCanBookMe/react-datetime) for my time picker
+- [Axios](https://github.com/mzabriskie/axios)
 
 ##Project MVP
 
@@ -21,7 +21,7 @@ User click on the 'Create New Event' button wich opens a form with fields for en
 
 ##Contributors
 
-Jason John and this article ( [https://themeteorchef.com/tutorials/click-to-edit-fields-in-react] )helped me with figuring out how my conditional rendering methods would work. J Silverstein helped me understand the bootstrap grid. 
+Jason John and this article: https://themeteorchef.com/tutorials/click-to-edit-fields-in-react helped me with figuring out how my conditional rendering methods would work. J Silverstein helped me understand the bootstrap grid. 
 
 ##Possible Future Editions
 
