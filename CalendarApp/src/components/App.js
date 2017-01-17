@@ -8,7 +8,6 @@ import EventListDisplay from './EventListDisplay'
 
 export default class App extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,39 +29,30 @@ export default class App extends React.Component {
       .then((response) => {
         let events = response.data;
         this.setState({ events });
-
-      })
+      });
   }
 
   postListData(eventData) {
-
     axios.post('https://calendarapp-eca54.firebaseio.com/.json', { eventData })
       .then((response) => {
       this.getListData();
-      })
-
+      });
   }
+
 
   render() {
     return (
-
-
-      <div className="container">
       <div className="jumbotron">
-        <h1>Event Scheduler</h1>
-
-      </div>
-
-
-        <AddEventForm
-          postListData={this.postListData}
+        <div className="container">
+          <h1>Event Scheduler</h1>
+          <AddEventForm
+            postListData={this.postListData}
           />
-
-        <EventListDisplay
-          events={this.state.events}
-          getListData={this.getListData}
+          <EventListDisplay
+            events={this.state.events}
+            getListData={this.getListData}
           />
-
+        </div>
       </div>
     );
   }

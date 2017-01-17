@@ -19,6 +19,7 @@ export default class EventListDisplay extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.keyPress = this.keyPress.bind(this);
 
   }
 
@@ -43,21 +44,14 @@ this.setState({
 
   patchListData(editedData) {
     let id = this.state.eventToEdit;
-    //let currentTodo = this.state.todos[id];
-    //currentTodo.title = this.refs.editTodoInput.value;
     axios.patch(`https://calendarapp-eca54.firebaseio.com/${id}.json`, { eventData: editedData })
       .then((response) => {
       this.props.getListData();
-      this.setState({ eventToEdit: null })
-      // this.setState({
-      //   dateValue: null,
-      //   eventToEdit: null });
-      })
-
+      this.setState({ eventToEdit: null });
+     });
   }
 
   handleClick() {
-
     this.patchListData(this.state);
  }
 
@@ -76,65 +70,67 @@ this.setState({
        });
   }
 
-
   handleTextChange() {
     const eventTextValue = this.eventText.value;
-    this.setState({ eventTextValue })
+    this.setState({ eventTextValue });
+  }
+
+  keyPress(e) {
+    if (e.charCode === 13) {
+      this.handleClick(e);
+    }
   }
 
 
   renderItemOrEditField(key) {
     const { events } = this.props;
-        if ( this.state && this.state.eventToEdit === key ) {
-
-      return <li  key={key}  className="event-item">
-
-       <form
-          onSubmit={(e) => this.handleSubmit(e)}
-          ref={(input) => this.addEventForm = input}
-          >
-           <input
-            type="submit"
-            value="Save Changes"
-            onClick={() => this.handleClick(key)}
-
-            />
-         <DatePicker
-              id="example-datepicker"
-              value={this.state.unformattedDateValue}
-              onChange={this.handleDateChange}
-
-            />
-             <DateTime
-              dateFormat={false}
-              inputProps={ {placeholder: "time"} }
-              value={this.state.formattedTimeValue}
-              onChange={this.handleTimeChange}
+      if ( this.state && this.state.eventToEdit === key ) {
+        return (
+          <li  key={key}  className="event-item">
+            <form
+              onSubmit={(e) => this.handleSubmit(e)}
+              ref={(input) => this.addEventForm = input}
+            >
+              <input
+                type="submit"
+                value="Save Changes"
+                onClick={() => this.handleClick(key)}
               />
-          <input
-            type="text"
-            placeholder="Event details"
-            ref={(input) => this.eventText = input}
-            onChange={this.handleTextChange}
-            defaultValue={events[key].eventData.eventTextValue}
-            />
-        </form>
-      </li>;
+              <DatePicker
+                id="example-datepicker"
+                value={this.state.unformattedDateValue}
+                onChange={this.handleDateChange}
+              />
+               <DateTime
+                  dateFormat={false}
+                  inputProps={ {placeholder: "Time"} }
+                  value={this.state.formattedTimeValue}
+                  onChange={this.handleTimeChange}
+                />
+              <textarea
+                type="text"
+                placeholder="Event details"
+                ref={(input) => this.eventText = input}
+                onChange={this.handleTextChange}
+                defaultValue={events[key].eventData.eventTextValue}
+                onKeyPress={(e) => this.keyPress(e)}
+              >
+              </textarea>
+            </form>
+          </li>
+      );
     } else {
       return (
-
         <li  key={key} className="event-item row">
-          <span className="glyphicon glyphicon-remove" onClick={() => this.handleDeleteClick(key)}></span>
-          <div className="event-data">
-            <p id="date"><span className="item-header">Date:</span>{events[key].eventData.formattedDateValue}</p>
-            <p id="time"><span className="item-header">Time:</span>{events[key].eventData.formattedTimeValue}</p>
-            <p id="display-text"><span className="item-header">Scheduled Event:</span>{events[key].eventData.eventTextValue}</p>
+          <span className="glyphicon glyphicon-remove  col-md-1 col-xs-12" onClick={() => this.handleDeleteClick(key)}></span>
+          <div id="event-data">
+            <p id="date" className="col-md-2 col-sm-6 col-xs-12"><span className="item-header">Date:</span>{events[key].eventData.formattedDateValue}</p>
+            <p id="time"  className="col-md-2 col-xs-12"><span className="item-header">Time:</span>{events[key].eventData.formattedTimeValue}</p>
+            <p id="display-text" className="col-md-6 col-xs-12"><span className="item-header">Scheduled Event:</span>{events[key].eventData.eventTextValue}</p>
           </div>
-            <button className="btn btn-default edit-button" onClick={() => this.handleEditClick(key)}>Edit Event</button>
+            <button className="btn btn-default edit-button col-md-1 col-xs-3" onClick={() => this.handleEditClick(key)}>Edit Event</button>
         </li>
-
-      )
-
+      );
     }
   }
 
@@ -152,14 +148,12 @@ this.setState({
 
   render() {
     const { events } = this.props;
-
     return (
       <div id="event-list">
       <ul>{Object.keys(events)
          .map((key) => { return this.renderItemOrEditField( key )})}
       </ul>
       </div>
-
     );
   }
 }

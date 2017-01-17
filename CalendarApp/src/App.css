@@ -4,15 +4,36 @@ body {
   color: black;
 }
 
-.glyphicon-remove, h4 {
-  color: #F9BDBD;
+.jumbotron {
+  height: 170px;
 }
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+}
+
+.create-event-btn {
+  margin-top: 50px;
+}
+
+#header{
+  width: 100%;
+}
+
+.glyphicon-remove, h2 {
+  color: aliceblue;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-family: 'Pompiere', cursive;
+  font-size: 40px;
+
+}
+
 #form {
   margin-left: 10%;
-  }
-
-.event-item {
-  display: flex;
+  margin-top: 80px;
 }
 
 .input-group {
@@ -21,53 +42,69 @@ body {
 }
 
 .glyphicon-remove {
-  margin-right: 5px;
-}
+  width: 5px;
+ }
 
 .rdt {
   width: 30%;
   margin-bottom: 20px;
 }
 
-#form-text {
+/*#form-text {
   width: 40%;
-}
+}*/
 
 #event-list {
   margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 li {
   margin-top: 10px;
+  list-style: none;
 }
 
 #date {
-  margin-left: 5px;
-  margin-right: 5px;
+  /*margin-left: 5px;
+  margin-right: 5px;*/
+
+  background: #eeeeee;
 }
 
 #time {
-  margin-right: 5px;
+
+ background: #eeeeee;
 }
 
 #display-text {
   margin-right: 5px;
+  background: #eeeeee;
 }
 
 .edit-button {
   margin-left: 5px;
-  }
 
-.item-header {
-  padding: 3px;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 20px;
 }
 
-.event-data {
-  display: flex;
+.item-header {
+  /*padding: 3px;*/
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  /*color: #A46798;*/
+  margin-right: 15px;
+  color: #990044;
+
+}
+
+#event-data {
+
   background: #eeeeee;
 }
 
+#date, #time, #display-text {
+
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 20px;
+}
 
 
