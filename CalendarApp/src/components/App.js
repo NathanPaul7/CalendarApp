@@ -21,7 +21,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getListData();
-
   }
 
   getListData() {
@@ -38,7 +37,6 @@ export default class App extends React.Component {
       this.getListData();
       });
   }
-
 
   render() {
     return (

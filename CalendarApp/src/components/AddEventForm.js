@@ -38,8 +38,6 @@ export default class AddEventForm extends React.Component {
       formattedTimeValue: '',
       isAddingEvent: false
     });
-
-
   }
 
   handleDateChange(dateValue, formattedValue) {
@@ -113,6 +111,7 @@ export default class AddEventForm extends React.Component {
           </form>
         </div>
         );
+
     } else {
       return (
         <button className="btn btn-default create-event-btn"

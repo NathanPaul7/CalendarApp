@@ -3,7 +3,6 @@ import axios from 'axios';
 import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
 import moment from 'moment';
-//import Event from './Event';
 
 export default class EventListDisplay extends React.Component {
   constructor() {
@@ -25,17 +24,15 @@ export default class EventListDisplay extends React.Component {
 
   handleEditClick(eventId) {
     const { events } = this.props;
-
-this.setState({
-  eventToEdit: eventId,
-  formattedDateValue: events[eventId].eventData.formattedDateValue,
-  formattedTimeValue: events[eventId].eventData.formattedTimeValue,
-  unformattedDateValue: events[eventId].eventData.dateValue,
-  unformattedTimeValue: events[eventId].eventData.unformattedTimeValue,
-  eventTextValue: events[eventId].eventData.eventTextValue
-});
-
-  }
+      this.setState({
+        eventToEdit: eventId,
+        formattedDateValue: events[eventId].eventData.formattedDateValue,
+        formattedTimeValue: events[eventId].eventData.formattedTimeValue,
+        unformattedDateValue: events[eventId].eventData.dateValue,
+        unformattedTimeValue: events[eventId].eventData.unformattedTimeValue,
+        eventTextValue: events[eventId].eventData.eventTextValue
+  });
+}
 
   handleSubmit(e) {
     e.preventDefault();
@@ -145,11 +142,11 @@ this.setState({
       });
   }
 
-
   render() {
     const { events } = this.props;
     return (
       <div id="event-list">
+      <h2>Scheduled Events:</h2>
       <ul>{Object.keys(events)
          .map((key) => { return this.renderItemOrEditField( key )})}
       </ul>
