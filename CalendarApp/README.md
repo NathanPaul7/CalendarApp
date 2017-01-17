@@ -1,6 +1,6 @@
 #Event Scheduler App
 
-![screen shot of scheduling app](CalendarApp/public/scheduler.png)
+![screen shot of scheduling app](/CalendarApp/public/scheduler.png)
 
 ##Technologies Used
 
@@ -21,7 +21,7 @@ User click on the 'Create New Event' button wich opens a form with fields for en
 
 ##Contributors
 
-Jason John and this article: https://themeteorchef.com/tutorials/click-to-edit-fields-in-react helped me with figuring out how my conditional rendering methods would work. J Silverstein helped me understand the bootstrap grid. 
+Jason Humphreys and this article: https://themeteorchef.com/tutorials/click-to-edit-fields-in-react helped me with figuring out how my conditional rendering methods would work. J Silverstein helped me understand the bootstrap grid. 
 
 ##Possible Future Editions
 
