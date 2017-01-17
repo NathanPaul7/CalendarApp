@@ -122,15 +122,17 @@ this.setState({
       </li>;
     } else {
       return (
-      <li  key={key} className="event-item">
 
-        <button onClick={() => this.handleDeleteClick(key)}>x</button>
-        <button onClick={() => this.handleEditClick(key)}>Edit</button>
-       <p> <b>Date: </b>{events[key].eventData.formattedDateValue}</p>
-       <p>  <b>Time: </b>{events[key].eventData.formattedTimeValue}</p>
-       <p> <b>Scheduled Event:</b> {events[key].eventData.eventTextValue}</p>
+        <li  key={key} className="event-item row">
+          <span className="glyphicon glyphicon-remove" onClick={() => this.handleDeleteClick(key)}></span>
+          <div className="event-data">
+            <p id="date"><span className="item-header">Date:</span>{events[key].eventData.formattedDateValue}</p>
+            <p id="time"><span className="item-header">Time:</span>{events[key].eventData.formattedTimeValue}</p>
+            <p id="display-text"><span className="item-header">Scheduled Event:</span>{events[key].eventData.eventTextValue}</p>
+          </div>
+            <button className="btn btn-default edit-button" onClick={() => this.handleEditClick(key)}>Edit Event</button>
+        </li>
 
-      </li>
       )
 
     }
@@ -152,10 +154,11 @@ this.setState({
     const { events } = this.props;
 
     return (
-
+      <div id="event-list">
       <ul>{Object.keys(events)
          .map((key) => { return this.renderItemOrEditField( key )})}
       </ul>
+      </div>
 
     );
   }

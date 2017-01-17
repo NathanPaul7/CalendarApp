@@ -62,33 +62,48 @@ export default class AddEventForm extends React.Component {
 
   render() {
     return (
-      <div className="form">
+      <div>
+
         <form
+
           onSubmit={(e) => this.handleSubmit(e)}
           ref={(input) => this.addEventForm = input}
           >
+          <div id="form">
+          <h4>Create New Event:</h4>
             <DatePicker
               id="example-datepicker"
               value={this.state.dateValue}
               onChange={this.handleDateChange}
             />
+
+
             <DateTime
               dateFormat={false}
-              inputProps={ {placeholder: "time"} }
+              inputProps={ {placeholder: "Time"} }
               value={this.state.formattedTimeValue}
               onChange={this.handleTimeChange}
               />
-            <input
-            type="text"
+
+
+            <textarea
+            className="form-control"
+            id="form-text"
+             rows="4" cols="40"
             placeholder="Event details"
             ref={(input) => this.eventText = input}
             onChange={this.handleTextChange}
-            />
+            >
+            </textarea>
+
+
           <input
+            className="btn btn-default"
             type="submit"
             value="Submit"
             onClick={() => this.handleClick()}
             />
+            </div>
         </form>
       </div>
     );

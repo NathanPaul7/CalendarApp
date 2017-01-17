@@ -1,8 +1,73 @@
-.App {
-  text-align: center;
+
+body {
+  background: #9C9CDD;
+  color: black;
 }
+
+.glyphicon-remove, h4 {
+  color: #F9BDBD;
+}
+#form {
+  margin-left: 10%;
+  }
 
 .event-item {
   display: flex;
 }
+
+.input-group {
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+.glyphicon-remove {
+  margin-right: 5px;
+}
+
+.rdt {
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+#form-text {
+  width: 40%;
+}
+
+#event-list {
+  margin-top: 5%;
+}
+
+li {
+  margin-top: 10px;
+}
+
+#date {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#time {
+  margin-right: 5px;
+}
+
+#display-text {
+  margin-right: 5px;
+}
+
+.edit-button {
+  margin-left: 5px;
+  }
+
+.item-header {
+  padding: 3px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+}
+
+.event-data {
+  display: flex;
+  background: #eeeeee;
+}
+
+
 

@@ -45,12 +45,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Calendar App</h1>
-        <button>Create New Event</button>
+
+
+      <div className="container">
+      <div className="jumbotron">
+        <h1>Event Scheduler</h1>
+
+      </div>
+
+
         <AddEventForm
           postListData={this.postListData}
           />
+
         <EventListDisplay
           events={this.state.events}
           getListData={this.getListData}
