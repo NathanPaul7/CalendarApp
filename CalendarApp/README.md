@@ -14,6 +14,7 @@
 - [react-bootstrap-datepicker](https://github.com/pushtell/react-bootstrap-date-picker) for my date picker
 - [react-datetime](https://github.com/YouCanBookMe/react-datetime) for my time picker
 - [Axios](https://github.com/mzabriskie/axios)
+- Google fonts
 
 ##Project MVP
 

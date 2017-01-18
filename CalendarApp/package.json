@@ -2,6 +2,7 @@
   "name": "CalendarApp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mimi26.github.io/CalendarApp/",
   "devDependencies": {
     "react-scripts": "0.8.5"
   },
