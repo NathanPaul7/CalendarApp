@@ -4,10 +4,6 @@ import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
-const propTypes = {
-  event: React.PropTypes.object,
-  getListData: React.PropTypes.func,
-};
 
 export default class EventListDisplay extends React.Component {
   constructor() {
@@ -160,4 +156,8 @@ export default class EventListDisplay extends React.Component {
   }
 }
 
+const propTypes = {
+  event: React.PropTypes.object,
+  getListData: React.PropTypes.func,
+};
 EventListDisplay.propTypes = propTypes;

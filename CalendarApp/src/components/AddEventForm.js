@@ -3,9 +3,6 @@ import DatePicker from 'react-bootstrap-date-picker';
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
-const propTypes = {
-  postListData: React.PropTypes.func
-};
 
 export default class AddEventForm extends React.Component {
 
@@ -40,6 +37,7 @@ export default class AddEventForm extends React.Component {
     this.setState({
       unformattedDateValue: '',
       formattedTimeValue: '',
+      eventTextValue: '',
       isAddingEvent: false
     });
   }
@@ -134,3 +132,8 @@ export default class AddEventForm extends React.Component {
 
   }
 }
+
+const propTypes = {
+  postListData: React.PropTypes.func
+};
+AddEventForm.propTypes = propTypes;
