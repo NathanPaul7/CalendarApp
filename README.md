@@ -6,6 +6,10 @@
 
 User click on the 'Create New Event' button wich opens a form with fields for entering date, time and event description. User clicks submit button which allows the new event to be listed in the 'Scheduled Events' section. User may click on the 'x' near a listed event in order to delete an event. User may click on 'Edit Event' button in order to edit details for a specific event. 
 
+## Link to CalendarApp
+
+http://scheduler.bitballoon.com/
+
 ## Technologies Used
 
 - HTML
